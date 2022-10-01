@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:f_chat_template/data/model/app_user.dart';
 import 'package:f_chat_template/ui/controllers/authentication_controller.dart';
 import 'package:f_chat_template/ui/controllers/user_controller.dart';
@@ -33,11 +34,19 @@ class ChatController extends GetxController {
 
     // TODO
     // newEntryStreamSubscription = databaseReference - child msg - child chatKey - listen
-    newEntryStreamSubscription = databaseReference.child("msg").child(chatKey).onChildAdded.listen(_onEntryAdded);
+    newEntryStreamSubscription = databaseReference
+        .child("msg")
+        .child(chatKey)
+        .onChildAdded
+        .listen(_onEntryAdded);
 
     // TODO
     //  updateEntryStreamSubscription = databaseReference - child msg - child chatKey - listen
-    newEntryStreamSubscription = databaseReference.child("msg").child(chatKey).onChildAdded.listen(_onEntryChanged);
+    newEntryStreamSubscription = databaseReference
+        .child("msg")
+        .child(chatKey)
+        .onChildAdded
+        .listen(_onEntryChanged);
   }
 
   // método en el que cerramos los streams
@@ -97,7 +106,11 @@ class ChatController extends GetxController {
     try {
       // TODO
       // databaseReference - child('msg') - child(key) - push() - set({'senderUid': senderUid, 'msg': msg})
-      databaseReference.child("msg").child(key).push().set({'senderUid': senderUid, 'msg': msg});
+      databaseReference
+          .child("msg")
+          .child(key)
+          .push()
+          .set({'senderUid': senderUid, 'msg': msg});
     } catch (error) {
       logError(error);
       return Future.error(error);

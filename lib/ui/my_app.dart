@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'controllers/authentication_controller.dart';
 import 'controllers/chat_controller.dart';
 import 'controllers/user_controller.dart';

@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
+
 import '../../data/model/app_user.dart';
 import 'authentication_controller.dart';
 
