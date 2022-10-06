@@ -42,7 +42,7 @@ class ChatController extends GetxController {
 
     // TODO
     //  updateEntryStreamSubscription = databaseReference - child msg - child chatKey - listen
-    newEntryStreamSubscription = databaseReference
+    updateEntryStreamSubscription = databaseReference
         .child("msg")
         .child(chatKey)
         .onChildAdded
@@ -100,20 +100,22 @@ class ChatController extends GetxController {
   // Este método es usado para agregar una nueva entrada en la "tabla" entre los
   // dos usuarios
   Future<void> sendChat(remoteUserUid, msg) async {
-    AuthenticationController authenticationController = Get.find();
-    String key = getChatKey(authenticationController.getUid(), remoteUserUid);
-    String senderUid = authenticationController.getUid();
-    try {
-      // TODO
-      // databaseReference - child('msg') - child(key) - push() - set({'senderUid': senderUid, 'msg': msg})
-      databaseReference
-          .child("msg")
-          .child(key)
-          .push()
-          .set({'senderUid': senderUid, 'msg': msg});
-    } catch (error) {
-      logError(error);
-      return Future.error(error);
+    if (msg != '') {
+      AuthenticationController authenticationController = Get.find();
+      String key = getChatKey(authenticationController.getUid(), remoteUserUid);
+      String senderUid = authenticationController.getUid();
+      try {
+        // TODO
+        // databaseReference - child('msg') - child(key) - push() - set({'senderUid': senderUid, 'msg': msg})
+        databaseReference
+            .child("msg")
+            .child(key)
+            .push()
+            .set({'senderUid': senderUid, 'msg': msg});
+      } catch (error) {
+        logError(error);
+        return Future.error(error);
+      }
     }
   }
 
